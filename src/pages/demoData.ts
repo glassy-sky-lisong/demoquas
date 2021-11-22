@@ -13,7 +13,7 @@ export interface tabsProp {
   children?: tabProp[];
 }
 
-const tabsData: tabsProp = [
+const tabsData: tabsProp[] = [
   {
     name: 'home',
     icon: 'hame',
@@ -44,16 +44,19 @@ const tabsData: tabsProp = [
     name: 'email',
     icon: 'mails',
     label: 'E-mail',
+    to: '/test1'
   },
   {
     name: 'alert',
     icon: 'alarms',
     label: 'Alert',
+    to: '/test2'
   },
   {
     name: 'Movies',
     icon: 'movies',
     label: 'Movies',
+    to: '/test3'
   }
 ]
 
