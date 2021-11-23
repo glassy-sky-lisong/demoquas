@@ -20,6 +20,7 @@
         <q-route-tab
           name='first'
           to="/"
+          @click.prevent="(e, go) => { go('/') }"
         >
            <template v-slot>
               <q-icon name='first' />
@@ -32,6 +33,7 @@
             :name="t.name"
             :to='t.to'
             v-for='t in tabs' :key='t.name'
+            @click.prevent="(e, go) => { go(t.to) }"
           >
             <template v-slot>
               <q-icon :name='t.icon' />
@@ -51,22 +53,25 @@
 <script lang="ts">
 import demoData, { tabsProp } from './demoData'
 import { defineComponent, ref, watch } from 'vue';
+import { useRouter } from 'vue-router'
+
 
 export default defineComponent({
   name: 'PageIndex',
   setup() {
+    const router = useRouter()
     const tabs = ref<Array<tabsProp>>([])
     const currentTab = ref('')
     const addTab = (_tab: tabsProp) => {
       console.log(tabs.value.indexOf(_tab, 0), 'add')
-      tabs.value.indexOf(_tab, 0) === -1 && tabs.value.push(_tab)
-      currentTab.value = _tab.name
+      tabs.value.indexOf(_tab, 0) === -1 ? tabs.value.push(_tab) : void router.push(_tab.to || '')
+      // currentTab.value = _tab.name
     }
     const rmTab = (_tab: tabsProp) => {
       const i = tabs.value.indexOf(_tab, 0)
 
       tabs.value.splice(i, 1)
-      currentTab.value = tabs.value.length > 0 ? tabs.value[tabs.value.length - 1].name : ''
+      // currentTab.value = tabs.value.length > 0 ? tabs.value[tabs.value.length - 1].name : ''
       console.log(i, 'rm')
     }
     watch(currentTab, (n, o) => {
