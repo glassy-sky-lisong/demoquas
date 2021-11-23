@@ -5,11 +5,7 @@ export interface tabProp {
   to?: string;
 }
 
-export interface tabsProp {
-  name: string;
-  icon: string;
-  label: string;
-  to?: string;
+export interface tabsProp extends tabProp {
   children?: tabProp[];
 }
 
