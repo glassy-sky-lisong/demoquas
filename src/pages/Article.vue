@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     article
-    <article-item @go-tab="() => count++" />
+    <article-item ref='itemRef' />
   </q-page>
 </template>
 
@@ -13,9 +13,11 @@ export default defineComponent({
   name: 'Article',
   components: { ArticleItem },
   setup () {
-    const count = ref(1)
+   const itemRef = ref(null)
+
+  //  itemRef.value.addTab(1)
     return {
-      count
+      itemRef
     }
   }
 })
