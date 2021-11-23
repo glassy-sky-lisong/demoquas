@@ -7,7 +7,7 @@
 
 <script>
 import ArticleItem from 'src/components/ArticleItem.vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 
 export default defineComponent({
   name: 'Article',
@@ -15,7 +15,10 @@ export default defineComponent({
   setup () {
    const itemRef = ref(null)
 
-  //  itemRef.value.addTab(1)
+  onMounted(() => {
+    itemRef.value.addTab(1)
+  })
+   
     return {
       itemRef
     }
