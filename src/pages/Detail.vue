@@ -19,6 +19,9 @@
         v-model:selected="selected"
         :selected-rows-label="getSelectedString"
         v-if='isSelected'
+        virtual-scroll
+        :virtual-scroll-item-size="48"
+        :virtual-scroll-sticky-size-start="48"
       >
       </q-table>
       <q-table
